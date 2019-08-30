@@ -1,0 +1,45 @@
+﻿@model IEnumerable<DemoProject.DTO.CityDto>
+
+@{
+    ViewBag.Title = "States";
+}
+
+<h2>City List</h2>
+
+<form class="row">
+    <div class="pull-left" style="padding-bottom: 10px; padding-left: 15px;">
+        <input type="text" name="keyword" value="@ViewBag.Keyword" />
+        <input type="submit" value="Search" />
+    </div>
+
+    <div class="pull-right" style="padding-right: 15px;">
+        @Html.ActionLink("Create New", "Create")
+    </div>
+</form>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @*@Html.DisplayNameFor(model => model.CityName)*@
+            City
+        </th>
+        <th>
+            Action
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CityName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are sure wants to delete?');" })
+            </td>
+        </tr>
+    }
+
+</table>
+
